@@ -1,0 +1,11 @@
+Sun Apr 26 17:19:36 GMT+05:00 2026 | INFO: Admin Main admin removed user: alice_st
+Sun Apr 26 17:19:36 GMT+05:00 2026 | INFO: Студент Alice зарегистрировался на курс OOP
+Sun Apr 26 17:19:36 GMT+05:00 2026 | INFO: Ошибка: Студент Alice превысил лимит кредитов.
+Sun Apr 26 17:19:36 GMT+05:00 2026 | INFO: Выставлена оценка студенту Alice по курсу OOP
+Sun Apr 26 17:19:36 GMT+05:00 2026 | INFO: База данных успешно сохранена в файл.
+Mon Apr 27 13:08:37 GMT+05:00 2026 | INFO: The database was successfully loaded from file.
+Mon Apr 27 13:08:37 GMT+05:00 2026 | INFO: Admin Main admin removed user: alice_st
+Mon Apr 27 13:08:37 GMT+05:00 2026 | INFO: Student Alice enrolled in course: OOP
+Mon Apr 27 13:08:37 GMT+05:00 2026 | INFO: Error: Student Alice exceeded the credit limit.
+Mon Apr 27 13:08:37 GMT+05:00 2026 | INFO: Mark assigned to student Alice for course: OOP
+Mon Apr 27 13:08:37 GMT+05:00 2026 | INFO: The database has been successfully saved to file.

@@ -1,5 +1,5 @@
 package src;
-
 public interface Observer {
-    void update(String message);
+		void update(String eventType,Object data);
 }
+
