@@ -86,18 +86,29 @@ public class Student extends User implements Serializable {
     }
 
     public void setMark(Course course, Mark mark) {
-        marks.put(course, mark);
+        Mark previous = marks.put(course, mark);
         Logger.log("Mark assigned to " + login + " for " + course.getName() +
                 ": " + mark.getTotal());
-        if (!mark.isPassed()) {
+
+        boolean wasFailed = previous != null && !previous.isPassed();
+        boolean isFailed = !mark.isPassed();
+
+        if (!wasFailed && isFailed) {
             failedCourses++;
             Logger.log("WARN: " + login + " failed " + course.getName() +
                     ". Failures: " + failedCourses);
-            if (failedCourses > MAX_FAILURES) {
-                status = StudentStatus.DISMISSED;
-                Logger.log("CRITICAL: " + login + " DISMISSED (>3 failures).");
-                System.out.println("[!] Student " + name + " has been DISMISSED.");
-            }
+        } else if (wasFailed && !isFailed && failedCourses > 0) {
+            failedCourses--;
+            Logger.log("INFO: " + login + " recovered " + course.getName() +
+                    ". Failures: " + failedCourses);
+        }
+
+        if (failedCourses > MAX_FAILURES) {
+            status = StudentStatus.DISMISSED;
+            Logger.log("CRITICAL: " + login + " DISMISSED (>3 failures).");
+            System.out.println("[!] Student " + name + " has been DISMISSED.");
+        } else if (status == StudentStatus.DISMISSED) {
+            status = StudentStatus.ACTIVE;
         }
     }
 
@@ -227,6 +238,10 @@ public class Student extends User implements Serializable {
 
     public List<Course> getPendingCourses() {
         return Collections.unmodifiableList(pendingCourses);
+    }
+
+    public void removePendingCourse(Course course) {
+        pendingCourses.remove(course);
     }
 
     public boolean isDismissed() {

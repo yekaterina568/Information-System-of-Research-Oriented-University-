@@ -34,6 +34,10 @@ public class Request implements Serializable {
         return signed;
     }
 
+    public String getSignedBy() {
+        return signedBy;
+    }
+
     public String getText() {
         return text;
     }

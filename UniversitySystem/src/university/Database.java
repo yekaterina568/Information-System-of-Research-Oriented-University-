@@ -3,6 +3,7 @@ import university.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 public class Database implements Serializable {
 	private static final long serialVersionUID=1L;
 	private static final String DB_FILE="database.ser";
@@ -28,14 +29,46 @@ public class Database implements Serializable {
         return users;
     }
 
-    public List<Course> getCourses() {
+	public List<Course> getCourses() {
         return courses;
     }
+	public boolean isLoginTaken(String login, User excludeUser) {
+		return users.stream()
+				.filter(user -> excludeUser == null || !user.equals(excludeUser))
+				.anyMatch(user -> user.getLogin().equals(login));
+	}
 	public void addUser(User user) {
-		if(users.stream().anyMatch(u->u.getLogin().equals(user.getLogin()))) {
+		if(isLoginTaken(user.getLogin(), null)) {
 			throw new IllegalArgumentException("User with ogin'"+user.getLogin()+"' already exists.");
 		}
 		users.add(user);
+		save();
+	}
+	public void updateUser(User user, String newName, String newLogin, String newPassword, String newEmail) {
+		if(user == null) {
+			throw new IllegalArgumentException("User cannot be null.");
+		}
+		if(newLogin == null || newLogin.isBlank()) {
+			throw new IllegalArgumentException("Login cannot be empty.");
+		}
+		if(isLoginTaken(newLogin, user)) {
+			throw new IllegalArgumentException("User with login '" + newLogin + "' already exists.");
+		}
+		user.setName(newName);
+		user.setLogin(newLogin);
+		user.setPassword(newPassword);
+		user.setEmail(newEmail);
+		save();
+	}
+	public void addCourse(Course course) {
+		boolean alreadyExists = courses.stream().anyMatch(existing ->
+				existing.getName().equalsIgnoreCase(course.getName())
+						&& existing.getYearOfStudy() == course.getYearOfStudy()
+						&& Objects.equals(existing.getMajor(), course.getMajor()));
+		if (alreadyExists) {
+			throw new IllegalArgumentException("Course '" + course.getName() + "' already exists for this major/year.");
+		}
+		courses.add(course);
 		save();
 	}
 	public boolean removeUser(String userId) {

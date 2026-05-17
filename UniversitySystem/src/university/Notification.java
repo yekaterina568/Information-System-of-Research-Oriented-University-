@@ -1,5 +1,6 @@
 package university;
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 public class Notification implements Serializable {
 	private static final long serialVersionUID=1L;
@@ -15,6 +16,7 @@ public class Notification implements Serializable {
 		this.read=false;
 	}
 	public NotificationType getType() {return type;}
+	public String getMessage() {return message;}
 	public String getmessage() {return message;}
 	public LocalDateTime getCreatedAt() {return createdAt;}
 	public boolean isRead() {return read;}
@@ -24,6 +26,11 @@ public class Notification implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return"["+type+"}"+message+" | "+createdAt+" | read="+read;
+		String timestamp = createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		return String.format("[%s] %s | %s | %s",
+				type,
+				message,
+				timestamp,
+				read ? "READ" : "UNREAD");
 	}
 }

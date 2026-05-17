@@ -22,16 +22,12 @@ public class Admin extends User {
         }
     }
     public void updateUser(User user,String newName,String newLogin, String newPassword,String newEmail) {
-    	user.setName(newName);
-        user.setLogin(newLogin);
-        user.setPassword(newPassword);
-        user.setEmail(newEmail);
+    	Database.getInstance().updateUser(user, newName, newLogin, newPassword, newEmail);
         
         Logger.log("Admin "
                 + this.name
                 + " updated user: "
                 + user.getLogin());
-        Database.saveDatabase();
     }
     public void viewLogs() {
     	List<String> logs =Logger.readLogs();
