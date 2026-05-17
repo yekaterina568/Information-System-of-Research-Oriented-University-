@@ -4,19 +4,17 @@ import university.Observer;
 public abstract class User implements Observer,Serializable {
 	private static final long serialVersionUID=1L;
 	protected String id;
+	protected String name;
 	protected String login;
 	protected String password;
-	protected String firstName;
-	protected String lastName;
 	protected String email;
 	public User(){}
 	
-	public User(String id,String login,String password,String firstnme,String lastName,String email) {
+	public User(String id,String name,String login,String password,String email) {
 		this.id=id;
+		this.name=name;
 		this.login=login;
 		this.password=password;
-		this.firstName=firstName;
-		this.lastName=lastName;
 		this.email=email;
 	}
 	public String getId() {
@@ -38,17 +36,11 @@ public abstract class User implements Observer,Serializable {
 	public void setPassword(String password) {
 		this.password=password;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName=firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName=lastName;
+	public void setName(String name) {
+		this.name=name;
 	}
 	public String getEmail() {
 		return email;
@@ -74,6 +66,6 @@ public abstract class User implements Observer,Serializable {
 	@Override
 	public String toString() {
 		return getClass().getSimpleName()+"{id='"+id+"',login='"+login+
-				"',name='"+firstName+" "+lastName+"'}";
+				"',name='"+name+"'}";
 	}
 }

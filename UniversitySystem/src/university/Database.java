@@ -9,6 +9,7 @@ public class Database implements Serializable {
 	
 	private static Database instance;
 	private List<User> users=new ArrayList<>();
+	private List<Course> courses=new ArrayList<>();
 	private Database() {}
 	public static Database getInstance() {
 		if(instance==null) {
@@ -16,6 +17,20 @@ public class Database implements Serializable {
 		}
 		return instance;
 	}
+	public static void loadDatabase() {
+        getInstance(); 
+    }
+
+    public static void saveDatabase() {
+        getInstance().save();
+    }
+    public List<User> getAllUsers() {
+        return users;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
 	public void addUser(User user) {
 		if(users.stream().anyMatch(u->u.getLogin().equals(user.getLogin()))) {
 			throw new IllegalArgumentException("User with ogin'"+user.getLogin()+"' already exists.");
@@ -25,17 +40,15 @@ public class Database implements Serializable {
 	}
 	public boolean removeUser(String userId) {
 		boolean removed=users.removeIf(u->u.getId().equals(userId));
-		if(removed) save();
-		return removed;
+		if(removed) {
+			save();
+		}return removed;
 	}
 	public User findByLogin(String login) {
 		return users.stream()
 				.filter(u->u.getLogin().equals(login))
 				.findFirst()
 				.orElse(null);
-	}
-	public List<User> getAllUsers(){
-		return new ArrayList<>(users);
 	}
 	public void save() {
 		try(ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(DB_FILE))){

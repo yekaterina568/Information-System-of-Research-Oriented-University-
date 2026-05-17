@@ -24,6 +24,9 @@ public class ResearchPaper implements Comparable<ResearchPaper>,Serializable {
 		this.references=references;
 		this.doi=doi;
 	}
+	public ResearchPaper(String title,List<String> authors,String journal,int pages,LocalDate datePublished,int citations,String doi,String references) {
+		this(title, authors, pages, datePublished, citations, journal, references, doi);
+	}
 	@Override
 	public int compareTo(ResearchPaper other) {
 		return Integer.compare(other.citations, this.citations);
@@ -55,13 +58,13 @@ public class ResearchPaper implements Comparable<ResearchPaper>,Serializable {
 	public int getCitations() {
 		return citations;
 	}
-	public void setCitations(int sitations ) {
+	public void setCitations(int citations ) {
 		this.citations=citations;
 	}
 	public String getJournal() {
 		return journal;
 	}
-	public void setJournal(String Journal) {
+	public void setJournal(String journal) {
 		this.journal=journal;
 	}
 	public String getReferences() {

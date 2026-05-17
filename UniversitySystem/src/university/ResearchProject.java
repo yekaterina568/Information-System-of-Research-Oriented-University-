@@ -4,32 +4,58 @@ import university.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
+import java.util.Objects;
 public class ResearchProject implements Serializable{
 	private static final long serialVersionUID=1L;
 	private String id;
 	private String topic;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private ResearchProjectStatus status;
 	private List<ResearchPaper> publishedPapers=new ArrayList<>();
 	private List<Researcher> participants=new ArrayList<>();
 	
-	public ResearchProject(String id,String topic) {
+	public ResearchProject(String id,String topic,LocalDate startDate,LocalDate endDate,ResearchProjectStatus status) {
 		this.id=id;
 		this.topic=topic;
+		this.startDate=startDate;
+		this.endDate=endDate;
+		this.status=status;
 	}
-	public void addPArticipant(User user) throws NotResearcherException{
+	public void addParticipant(User user) throws NotResearcherException{
 		if(!(user instanceof Researcher)) {
 			throw new NotResearcherException(
 					"User '"+user.getLogin()+"' is not a Researcher and cannot join project '"+topic+"'.");	
 		}
-		participants.add((Researcher)user);
+		Researcher researcher=(Researcher) user;
+		if(!participants.contains(researcher)) {
+			participants.add(researcher);
+			researcher.addProject(this);
+		}
 	}
 	public void addPaper(ResearchPaper paper) {
-		publishedPapers.add(paper);
+		if(!publishedPapers.contains(paper)) {
+			publishedPapers.add(paper);
+		}
 	}
-	public String getId() {
+	public String getid() {
 		return id;
 	}
 	public String getTopic() {
 		return topic;
+	}
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+	public ResearchProjectStatus getStatus() {
+		return status;
+	}
+	public void setStatus(ResearchProjectStatus status) {
+		this.status=status;
 	}
 	public List<ResearchPaper> getPublishedPapers(){
 		return new ArrayList<>(publishedPapers);
@@ -40,8 +66,19 @@ public class ResearchProject implements Serializable{
 	@Override
 	public String toString() {
 		return "ResearchProject{id='"+id+"', topic='"+topic+
-				"', participants="+participants.size()+
+				"', status="+status+
+				", participants="+participants.size()+
 				", papers="+publishedPapers.size()+"}";
 	}
-
-}
+	@Override
+	public boolean equals(Object o) {
+		if(this==o) return true;
+		if(!(o instanceof ResearchProject)) return false;
+		ResearchProject that=(ResearchProject) o;
+		return Objects.equals(id,that.id);
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+}	

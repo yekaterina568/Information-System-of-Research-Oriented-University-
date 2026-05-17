@@ -2,61 +2,74 @@ package university;
 import university.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 public class ResearcherDecorator extends User implements Researcher{
 	private static final long serialVersionUID=1L;
 	private final User decoratedUser;
+	private School school;
 	private final List<ResearchPaper> papers=new ArrayList<>();
 	private final List<ResearchProject> projects=new ArrayList<>();
-	public ResearcherDecorator(User user) {
+	public ResearcherDecorator(User user,School school) {
+		super(user.getId(),user.getName(),user.getLogin(),user.getPassword(),user.getEmail());
 		this.decoratedUser=user;
-		this.id=user.getId();
-		this.login=user.getLogin();
-		this.password=user.getPassword();
-		this.firstName=user.getFirstName();
-		this.lastName=user.getLastName();
-		this.email=user.getEmail();
+		this.school=school;
 }
+	public User getDecoratedUser() {
+		return decoratedUser;
+	}
 	@Override
 	public int getHIndex() {
-		List<Integer> citationCounts=papers.stream()
-				.map(ResearchPaper::getCitations)
-				.sorted(java.util.Comparator.reverseOrder())
-				.collect(java.util.stream.Collectors.toList());
+		List<Integer> citationCounts= new ArrayList<>();
+		for (ResearchPaper paper:papers) {
+			citationCounts.add(paper.getCitations());
+		}
+		citationCounts.sort(Collections.reverseOrder());
 		int h=0;
 		for(int i=0;i<citationCounts.size();i++) {
 			if(citationCounts.get(i)>=i+1) {
 				h=i+1;
-			}else {
-				break;
-			}
+			}else {break;}
 		}
 		return h;
+				
 	}
 	@Override
 	public void addPaper(ResearchPaper paper) {
-		papers.add(paper);
+		if(!papers.contains(paper)) {
+			papers.add(paper);
+		}
 	}
 	@Override
 	public List<ResearchPaper> getPapers(){
 		return new ArrayList<>(papers);
 	}
+	@Override
 	public void addProject(ResearchProject project) {
-		projects.add(project);
+		if(!projects.contains(project)) {
+			projects.add(project);
+		}
 	}
+	@Override
 	public List<ResearchProject> getProjects(){
 		return new ArrayList<>(projects);
+	}
+	@Override
+	public School getSchool() {
+		return school;
+	}
+	@Override
+	public void setSchool(School school) {
+		this.school=school;
 	}
 	@Override
 	public void update(String eventType,Object data) {
 		decoratedUser.update(eventType, data);
 	}
-	public User getDecoratedUser() {
-		return decoratedUser;
-	}
 	@Override
 	public String toString() {
-		return"ResearcherDecorator{wrapping="+decoratedUser+
-				", hIndex="+getHIndex()+ ", papers="+papers.size()+"}";
+		return "ResearcherDecorator{user="+decoratedUser.getName()+
+				", school="+school+
+				", papers="+papers.size()+"}";
 	}
-
+	
 }

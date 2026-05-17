@@ -1,0 +1,7 @@
+Mon Apr 27 13:19:07 ALMT 2026 | INFO: Admin Main Admin added user: alice_
+Mon Apr 27 13:19:07 ALMT 2026 | INFO: Student alice enrolled in course: OOP
+Mon Apr 27 13:19:07 ALMT 2026 | INFO: Error: Student alice exceeded the credit limit.
+Mon Apr 27 13:19:07 ALMT 2026 | INFO: Mark assigned to student alice for course: OOP
+Mon Apr 27 14:46:30 ALMT 2026 | INFO: Student alice enrolled in course: OOP
+Mon Apr 27 14:46:30 ALMT 2026 | INFO: Error: Student alice exceeded the credit limit.
+Mon Apr 27 14:46:30 ALMT 2026 | INFO: Mark assigned to student alice for course: OOP
