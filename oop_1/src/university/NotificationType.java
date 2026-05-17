@@ -1,0 +1,11 @@
+package src.university;
+
+public enum NotificationType {
+	MESSAGE,
+	COURSE_ASSIGNMENT,
+	REGISTRATION_APPROVED,
+	REGISTRATION_REJECTED,
+	RESEARCH_UPDATE,
+	SYSTEM
+
+}
