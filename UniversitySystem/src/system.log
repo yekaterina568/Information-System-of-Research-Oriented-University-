@@ -5,3 +5,48 @@ Mon Apr 27 13:19:07 ALMT 2026 | INFO: Mark assigned to student alice for course:
 Mon Apr 27 14:46:30 ALMT 2026 | INFO: Student alice enrolled in course: OOP
 Mon Apr 27 14:46:30 ALMT 2026 | INFO: Error: Student alice exceeded the credit limit.
 Mon Apr 27 14:46:30 ALMT 2026 | INFO: Mark assigned to student alice for course: OOP
+Mon May 18 16:13:21 GMT+05:00 2026 | INFO: Wrong password attempt for: alice
+Mon May 18 16:14:15 GMT+05:00 2026 | INFO: User logged in: alice | Role: Student
+Mon May 18 16:14:37 GMT+05:00 2026 | INFO: alice requested registration for: AI
+Mon May 18 16:15:13 GMT+05:00 2026 | INFO: User logged out: alice
+Mon May 18 16:15:25 GMT+05:00 2026 | INFO: User logged in: admin | Role: Admin
+Mon May 18 16:16:00 GMT+05:00 2026 | INFO: Admin Main Admin updated user: charlie
+Mon May 18 16:16:32 GMT+05:00 2026 | INFO: User logged out: admin
+Mon May 18 16:16:46 GMT+05:00 2026 | INFO: User logged in: dean | Role: Manager
+Mon May 18 16:17:07 GMT+05:00 2026 | INFO: charlie enrolled in: AI
+Mon May 18 16:17:07 GMT+05:00 2026 | INFO: dean approved registration: charlie -> AI
+Mon May 18 16:17:51 GMT+05:00 2026 | INFO: dean sent message to charlie
+Mon May 18 16:17:53 GMT+05:00 2026 | INFO: User logged out: dean
+Mon May 18 16:18:01 GMT+05:00 2026 | INFO: User logged in: charlie | Role: Student
+Mon May 18 16:18:36 GMT+05:00 2026 | INFO: User logged out: charlie
+Mon May 18 16:18:52 GMT+05:00 2026 | INFO: Wrong password attempt for: clark
+Mon May 18 16:19:03 GMT+05:00 2026 | INFO: User logged in: clark | Role: Professor
+Mon May 18 16:25:05 GMT+05:00 2026 | INFO: User logged out: clark
+Mon May 18 16:25:12 GMT+05:00 2026 | INFO: User logged in: ann | Role: Teacher
+Mon May 18 16:25:50 GMT+05:00 2026 | INFO: User logged out: ann
+Mon May 18 16:26:08 GMT+05:00 2026 | INFO: User logged in: admin | Role: Admin
+Mon May 18 16:26:35 GMT+05:00 2026 | INFO: Admin Main Admin updated user: charlie
+Mon May 18 16:26:38 GMT+05:00 2026 | INFO: User logged out: admin
+Mon May 18 16:26:45 GMT+05:00 2026 | INFO: Failed login attempt for login: Bob
+Mon May 18 16:27:42 GMT+05:00 2026 | INFO: Failed login attempt for login: 
+Mon May 18 16:27:47 GMT+05:00 2026 | INFO: User logged in: bob | Role: Student
+Mon May 18 16:28:00 GMT+05:00 2026 | INFO: bob requested registration for: OOP
+Mon May 18 16:28:06 GMT+05:00 2026 | INFO: User logged out: bob
+Mon May 18 16:28:57 GMT+05:00 2026 | INFO: User logged in: dean | Role: Manager
+Mon May 18 16:29:07 GMT+05:00 2026 | INFO: bob enrolled in: OOP
+Mon May 18 16:29:07 GMT+05:00 2026 | INFO: dean approved registration: bob -> OOP
+Mon May 18 16:30:15 GMT+05:00 2026 | INFO: User logged out: dean
+Mon May 18 16:30:29 GMT+05:00 2026 | INFO: User logged in: clark | Role: Professor
+Mon May 18 16:30:38 GMT+05:00 2026 | INFO: User logged out: clark
+Mon May 18 16:30:49 GMT+05:00 2026 | INFO: Failed login attempt for login: teacher
+Mon May 18 16:31:04 GMT+05:00 2026 | INFO: User logged in: ann | Role: Teacher
+Mon May 18 16:33:46 GMT+05:00 2026 | INFO: User logged out: ann
+Mon May 18 16:33:52 GMT+05:00 2026 | INFO: Failed login attempt for login: ����
+Mon May 18 16:33:59 GMT+05:00 2026 | INFO: User logged in: dean | Role: Manager
+Mon May 18 16:36:31 GMT+05:00 2026 | INFO: User logged out: dean
+Mon May 18 16:37:01 GMT+05:00 2026 | INFO: User logged in: dean | Role: Manager
+Mon May 18 16:37:16 GMT+05:00 2026 | INFO: User logged out: dean
+Mon May 18 16:37:25 GMT+05:00 2026 | INFO: User logged in: ann | Role: Teacher
+Mon May 18 16:37:40 GMT+05:00 2026 | INFO: ann sent message to dean
+Mon May 18 16:37:43 GMT+05:00 2026 | INFO: User logged out: ann
+Mon May 18 16:37:49 GMT+05:00 2026 | INFO: User logged in: dean | Role: Manager

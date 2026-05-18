@@ -33,7 +33,12 @@ public abstract class Employee extends User implements Observer, Serializable {
 
     public void sendComplaint(String complaint) {
         sentComplaints.add(complaint);
-        System.out.println("Complaint submitted by " + getName() + ": " + complaint);
+        Database.getInstance().getAllUsers().stream()
+                .filter(u -> u instanceof Manager)
+                .forEach(m -> MessageService.getInstance()
+                        .send(this, m, "COMPLAINT: " + complaint));
+
+        System.out.println("Complaint submitted.");
     }
 
     public Request createRequest(String text) {
